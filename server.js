@@ -9,6 +9,12 @@ const handler = async (req, res) => {
         res.setHeader(k, v);
     }
     const method = req.method;
+
+    // UptimeRobot 測試服務使用
+    if (req.method === 'HEAD') {
+        res.statusCode = 200;
+        return res.end();
+      }
     // 處理 preflight
     if (method === 'OPTIONS') {
         res.statusCode = 204;
